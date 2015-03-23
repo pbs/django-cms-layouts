@@ -6,6 +6,8 @@ class MockLoader(BaseLoader):
     is_usable = True
 
     def load_template_source(self, template_name, template_dirs=None):
+        if template_name == 'cms/plugins/text.html':
+            return ('{{body}}', 'cms/plugins/text.html')
         if template_name == 'page_template.html':
             return ('{% load cms_tags %}|'
                     '{% page_attribute "page_title" %}|'
