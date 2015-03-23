@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+Revision e083d76 (23.03.2015, 16:52 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * ensure text plugin renders only body
+  * Update setup.py
+
 Revision 07a3aa2 (08.07.2014, 10:04 UTC)
 ----------------------------------------
 
