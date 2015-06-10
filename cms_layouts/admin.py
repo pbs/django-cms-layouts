@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from django.forms.util import ErrorList
+from django.forms.models import modelform_factory
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import title
 from cms.admin.placeholderadmin import PlaceholderAdmin
 from cms.utils import get_language_from_request
 from cms.utils.plugins import get_placeholders
@@ -112,6 +114,8 @@ class LayoutAdmin(PlaceholderAdmin):
         return PlaceholderFormField(widget=editor, required=False)
 
     def _get_layout_placeholders_fields(self, request, layout):
+        if not layout:
+            return {}
         formfields = {}
         lang = get_language_from_request(request, layout.from_page)
         # get placeholder slots from page template
@@ -129,24 +133,40 @@ class LayoutAdmin(PlaceholderAdmin):
 
         return formfields
 
+    def get_fieldsets(self, request, obj=None):
+        given_fieldsets = list(self.fieldsets)
+        formfields = self._get_layout_placeholders_fields(request, obj)
+        for placeholder_name in formfields:
+            given_fieldsets += [
+                (title(placeholder_name),
+                    {'fields':[placeholder_name],
+                     'classes':['plugin-holder']})
+            ]
+        return given_fieldsets
+
     def get_form(self, request, obj=None, **kwargs):
-        form = super(LayoutAdmin, self).get_form(request, obj, **kwargs)
-        if not obj:
-            return form
-        form.layout_obj_change_url = self._get_change_url(obj.content_object)
-        form.layout_obj_model = obj.content_object._meta.module_name
+        missing = formfields = None
         try:
             formfields = self._get_layout_placeholders_fields(request, obj)
         except MissingRequiredPlaceholder, e:
-            form.missing_required_placeholder_slot = ErrorList([
+            missing = ErrorList([
                 "This layout is missing a required placeholder named %s."
                 "Choose a different page for this layout that has the "
                 "required placeholder or just add this placeholder in the "
                 "page template." % (e.slot, )])
-        else:
-            form.missing_required_placeholder_slot = False
-            form.base_fields.update(formfields)
-        return form
+
+        model_attrs = {'missing_required_placeholder_slot': missing}
+        model_attrs.update(formfields or {})
+
+        if obj:
+            change_url = self._get_change_url(obj.content_object)
+            module = obj.content_object._meta.module_name
+            model_attrs.update({
+                'layout_obj_change_url': change_url,
+                'layout_obj_model': module
+            })
+
+        return type('LayoutForm', (modelform_factory(Layout), ), model_attrs)
 
     def edit_plugin(self, request, plugin_id):
         plugin = get_object_or_404(CMSPlugin, pk=int(plugin_id))
