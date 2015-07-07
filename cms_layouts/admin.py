@@ -55,12 +55,12 @@ class LayoutAdmin(PlaceholderAdmin):
 
     def _get_change_url(self, obj):
         pattern = 'admin:%s_%s_change' % (obj._meta.app_label,
-                                          obj._meta.module_name)
+                                          obj._meta.model_name)
         return reverse(pattern,  args=[obj.id])
 
     def _get_change_url_tag(self, obj):
         url_tag = ("<a href='%s'>%s: %s</a>" % (
-            self._get_change_url(obj), obj._meta.module_name, obj))
+            self._get_change_url(obj), obj._meta.model_name, obj))
         return url_tag
 
     def object_that_uses_this_layout(self, layout):
@@ -160,7 +160,7 @@ class LayoutAdmin(PlaceholderAdmin):
 
         if obj:
             change_url = self._get_change_url(obj.content_object)
-            module = obj.content_object._meta.module_name
+            module = obj.content_object._meta.model_name
             model_attrs.update({
                 'layout_obj_change_url': change_url,
                 'layout_obj_model': module

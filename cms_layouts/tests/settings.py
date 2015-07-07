@@ -11,7 +11,6 @@ INSTALLED_APPS = [
     'cms',
     'mptt',
     'menus',
-    'south',
     'sekizai',
     'cms.plugins.text',
     'cms_layouts',
@@ -66,7 +65,8 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
-
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 CACHE_BACKEND = 'locmem:///'
 
 SOUTH_TESTS_MIGRATE = False
+SECRET_KEY = 'secret'
