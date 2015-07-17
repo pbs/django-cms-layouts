@@ -1,6 +1,17 @@
 CHANGELOG
 =========
 
+Revision b7a5f08 (17.07.2015, 13:28 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * tox: Don't allow django 1.8 prereleases
+  * Django 1.7 upgrade: generated migrations; fixed deprecation warnings;
+  * Django 1.6 upgrade: fixed admin
+
 Revision e083d76 (23.03.2015, 16:52 UTC)
 ----------------------------------------
 
