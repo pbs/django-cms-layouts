@@ -68,11 +68,11 @@ class Layout(models.Model):
             return self.content_object.get_title_obj()
         return LayoutTitle()
 
-    def __unicode__(self):
+    def __str__(self):
         _type = 'Inherited from page'
         if self.hidden_placeholders:
             _type = 'Custom from page'
-        return "<%s - %s>" % (_type, self.from_page)
+        return "%s - %s" % (_type, self.from_page)
 
 
 class LayoutPlaceholder(models.Model):
@@ -84,6 +84,9 @@ class LayoutPlaceholder(models.Model):
     #   when this layout does not have all placeholder slots defined then the
     #   ones from the linked page will be rendered
     layout = models.ForeignKey(Layout, related_name='placeholders')
+
+    def __str__(self):
+        return "%s: %s" % (self.layout, self.holder.slot)
 
 
 @receiver(signals.pre_delete, sender=LayoutPlaceholder)
