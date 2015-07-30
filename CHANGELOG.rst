@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+Revision cba9cbe (30.07.2015, 09:06 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * str for instances should work
+
 Revision b7a5f08 (17.07.2015, 13:28 UTC)
 ----------------------------------------
 
