@@ -89,8 +89,8 @@ class LayoutAdmin(PlaceholderAdmin):
 
     def _get_fixed_slot_formfield(self, section_name):
         help_text = (
-            "<h3>This section will be populated with %s "
-            "from the object that uses this layout</h3>") % section_name
+            "This section will be populated with %s "
+            "from the object that uses this layout") % section_name
         content_field = PlaceholderFormField(
             required=False, help_text=help_text)
         widget = content_field.widget

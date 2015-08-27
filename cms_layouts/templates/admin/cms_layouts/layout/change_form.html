@@ -10,16 +10,9 @@
 {% block extrastyle %}
 {{block.super}}
 <style type="text/css">
-div.submit-row a.default {
-    border: 2px solid #5b80b2;
-    background: #7CA0C7 url({{STATIC_URL}}admin/img/default-bg.gif) bottom repeat-x;
-    font-weight: bold;
-    color: white;
-    float: right;
-    margin: 0 0 0 5px;
-    padding: 3px 5px;
-    white-space: pre;
-}
+    #lang_tab_content fieldset.plugin-holder .help-button {
+        margin: 10px;
+    }
 </style>
 {% endblock %}
 
@@ -29,14 +22,16 @@ div.submit-row a.default {
 {% endblock %}
 
 {% block field_sets %}
+<div id="lang_tab_content">
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
   {% if forloop.first or forloop.last %}
-    <div class="submit-row">
-    <a class='default' {% if is_popup %}onclick="window.close();" {% else %}href="{{adminform.form.layout_obj_change_url}}"{% endif %}>Save and go back to {{adminform.form.layout_obj_model}}</a>
+     <div class="submit-row form-actions text-right no-margin-bottom no-background">
+        <a class='btn btn-primary default' {% if is_popup %}onclick="window.close();" {% else %}href="{{adminform.form.layout_obj_change_url}}"{% endif %}>Save and go back to {{adminform.form.layout_obj_model}}</a>
     </div>
   {% endif %}
 {% endfor %}
+</div>
 {% endblock %}
 
 {% block submit_buttons_bottom %}
