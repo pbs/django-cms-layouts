@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+Revision 42a193b (28.08.2015, 07:21 UTC)
+----------------------------------------
+
+* LUN-2310
+
+  * integrated Ace theme
+
+No other commits.
+
 Revision cba9cbe (30.07.2015, 09:06 UTC)
 ----------------------------------------
 
