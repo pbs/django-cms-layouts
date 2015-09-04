@@ -166,7 +166,7 @@ class LayoutAdmin(PlaceholderAdmin):
                 'layout_obj_model': module
             })
 
-        return type('LayoutForm', (modelform_factory(Layout), ), model_attrs)
+        return type('LayoutForm', (modelform_factory(Layout, exclude=()), ), model_attrs)
 
     def edit_plugin(self, request, plugin_id):
         plugin = get_object_or_404(CMSPlugin, pk=int(plugin_id))

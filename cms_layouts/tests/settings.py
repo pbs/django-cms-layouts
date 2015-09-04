@@ -25,18 +25,6 @@ STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 ROOT_URLCONF = 'cms_layouts.tests.urls'
 
-TEMPLATE_CONTEXT_PROCESSORS = [
-    "django.contrib.auth.context_processors.auth",
-    'django.contrib.messages.context_processors.messages',
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.request",
-    "django.core.context_processors.media",
-    'django.core.context_processors.csrf',
-    "cms.context_processors.media",
-    "sekizai.context_processors.sekizai",
-    "django.core.context_processors.static",
-]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -60,13 +48,33 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.toolbar.ToolbarMiddleware',
 )
 
-TEMPLATE_LOADERS = (
-    'cms_layouts.tests.utils.MockLoader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 CACHE_BACKEND = 'locmem:///'
 
 SOUTH_TESTS_MIGRATE = False
 SECRET_KEY = 'secret'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'OPTIONS': {
+            'context_processors': (
+                "django.contrib.auth.context_processors.auth",
+                'django.contrib.messages.context_processors.messages',
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.template.context_processors.media",
+                'django.template.context_processors.csrf',
+                "cms.context_processors.media",
+                "sekizai.context_processors.sekizai",
+                "django.template.context_processors.static",
+            ),
+            'loaders': (
+                'cms_layouts.tests.utils.MockLoader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ),
+        },
+    },
+]
