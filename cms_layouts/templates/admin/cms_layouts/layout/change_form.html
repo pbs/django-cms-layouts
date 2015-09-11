@@ -25,7 +25,7 @@
 <div id="lang_tab_content">
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
-  {% if forloop.first or forloop.last %}
+  {% if forloop.last %}
      <div class="submit-row form-actions text-right no-margin-bottom no-background">
         <a class='btn btn-primary default' {% if is_popup %}onclick="window.close();" {% else %}href="{{adminform.form.layout_obj_change_url}}"{% endif %}>Save and go back to {{adminform.form.layout_obj_model}}</a>
     </div>
