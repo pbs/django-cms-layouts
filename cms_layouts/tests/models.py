@@ -1,7 +1,7 @@
 from django.db import models
 from cms.models.fields import PlaceholderField
 from cms_layouts.models import LayoutTitle, Layout
-from django.contrib.contenttypes.generic import GenericRelation
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Article(models.Model):

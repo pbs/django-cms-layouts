@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
 from django.conf.urls import patterns, url
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from django.forms.models import modelform_factory
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
