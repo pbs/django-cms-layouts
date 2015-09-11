@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+Revision 6f314ec (11.09.2015, 13:56 UTC)
+----------------------------------------
+
+* LUN-2620
+
+  * removed top Save and go back button
+
+No other commits.
+
 Revision 42a193b (28.08.2015, 07:21 UTC)
 ----------------------------------------
 
