@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+Revision 59fd7a1 (23.09.2015, 15:29 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * DJango 1.8 upgrade: removed some django1.9 deprecation warnings
+  * Django 1.8 upgrade: added support for django 1.8
+
 Revision 6f314ec (11.09.2015, 13:56 UTC)
 ----------------------------------------
 
