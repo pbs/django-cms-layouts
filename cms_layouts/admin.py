@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
 from django.conf.urls import patterns, url
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from django.forms.models import modelform_factory
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
@@ -166,7 +166,7 @@ class LayoutAdmin(PlaceholderAdmin):
                 'layout_obj_model': module
             })
 
-        return type('LayoutForm', (modelform_factory(Layout), ), model_attrs)
+        return type('LayoutForm', (modelform_factory(Layout, exclude=()), ), model_attrs)
 
     def edit_plugin(self, request, plugin_id):
         plugin = get_object_or_404(CMSPlugin, pk=int(plugin_id))
