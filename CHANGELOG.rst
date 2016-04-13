@@ -1,6 +1,17 @@
 CHANGELOG
 =========
 
+Revision 1e01812 (13.04.2016, 12:25 UTC)
+----------------------------------------
+
+* LUN-2958
+
+  * Change help text message.
+
+* Misc commits
+
+  * Update setup.py
+
 Revision 59fd7a1 (23.09.2015, 15:29 UTC)
 ----------------------------------------
 
